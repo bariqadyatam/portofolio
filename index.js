@@ -36,3 +36,58 @@ const headerLogoConatiner = document.querySelector('.header__logo-container')
 headerLogoConatiner.addEventListener('click', () => {
   location.href = 'index.html'
 })
+
+// --- Contact Form Discord Webhook
+const contactForm = document.getElementById('contactForm')
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async function (e) {
+    e.preventDefault()
+
+    const name = document.getElementById('name').value
+    const email = document.getElementById('email').value
+    const message = document.getElementById('message').value
+
+    const webhookURL = 'https://discord.com/api/webhooks/1511541616815378432/oWrlv-UlL97mjUO7wdHh8_vU6X0cnjqGeh5td_ZZPl18k_pZy76JPpv7BhLE9GmW9rqA'
+
+    const payload = {
+      embeds: [
+        {
+          title: '📩 Pesan Baru dari Portfolio',
+          color: 3447003,
+          fields: [
+            {
+              name: '👤 Nama',
+              value: name,
+            },
+            {
+              name: '📧 Email',
+              value: email,
+            },
+            {
+              name: '💬 Pesan',
+              value: message,
+            },
+          ],
+          timestamp: new Date().toISOString(),
+        },
+      ],
+    }
+
+    try {
+      await fetch(webhookURL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      alert('Pesan berhasil dikirim!')
+      contactForm.reset()
+    } catch (error) {
+      console.error(error)
+      alert('Gagal mengirim pesan.')
+    }
+  })
+}
