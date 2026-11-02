@@ -22,7 +22,7 @@ $year = date('Y');
         </div>
     </div>
     <div class="wrap footer-bottom">
-        <p>&copy; <?= e((string) $year) ?> <?= e($profile['name']) ?>. Dibangun dengan PHP native, tanpa framework.</p>
+        <p>&copy; <?= e((string) $year) ?> <?= e($profile['name']) ?>. Dibangun dengan PHP native.</p>
         <a class="to-top" href="#top">Kembali ke atas ↑</a>
     </div>
 </footer>

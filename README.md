@@ -12,8 +12,37 @@ php -S localhost:8000
 
 Buka http://localhost:8000
 
-Tidak perlu Apache/Nginx. Kalau nanti mau online, cukup upload folder ini ke hosting PHP
-(shared hosting, VPS, atau Cloud Run) — tidak ada konfigurasi khusus.
+Tidak perlu Apache/Nginx. Untuk hosting PHP (shared hosting, VPS, Cloud Run) cukup upload
+seluruh folder ini.
+
+## Deploy ke Vercel / hosting statis
+
+**Vercel tidak menjalankan PHP.** File `.php` akan dikirim apa adanya sebagai unduhan
+(`application/octet-stream`), bukan dieksekusi — itu sebabnya membuka situs di Vercel
+malah men-download source code.
+
+Solusinya: ekspor dulu ke HTML statis, lalu deploy folder `dist/`.
+
+```bash
+php build-static.php       # menghasilkan dist/index.html + assets + CV-Bariq-Adyatma.pdf
+```
+
+Setelah itu, di Vercel:
+
+- **Root Directory**: `dist`
+- **Framework Preset**: Other
+- **Build Command**: kosong
+- **Output Directory**: kosong
+
+Atau langsung dari terminal: `cd dist && vercel --prod`.
+
+Skrip `build-static.php` merender `index.php` dengan PHP CLI, mengganti tautan
+`download.php` menjadi berkas PDF, dan memastikan tidak ada sisa file `.php` di `dist/`.
+Jalankan ulang setiap kali `data.php` atau tampilan diubah.
+
+Kalau tetap ingin PHP berjalan (misalnya memakai `download.php` dinamis), gunakan hosting
+PHP — bukan Vercel. Alternatif di Vercel adalah community runtime `vercel-php`, tetapi
+hanya untuk fungsi di folder `api/` dan tidak resmi didukung.
 
 ## Struktur
 

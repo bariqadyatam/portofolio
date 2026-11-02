@@ -24,6 +24,7 @@ $cv = cv_path($profile);
 
     <link rel="icon" href="data:image/svg+xml,<?= rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0b1220"/><text x="32" y="42" font-family="ui-sans-serif,system-ui" font-size="28" font-weight="700" fill="#6ee7b7" text-anchor="middle">BA</text></svg>') ?>">
     <link rel="stylesheet" href="assets/css/style.css">
+    <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
     <script>
         // Terapkan tema tersimpan sebelum render supaya tidak berkedip.
         (function () {
