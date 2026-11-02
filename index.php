@@ -4,8 +4,7 @@ declare(strict_types=1);
 $data = require __DIR__ . '/data.php';
 require __DIR__ . '/includes/helpers.php';
 
-$profile = $data['profile'];
-$cv = cv_path($profile);
+
 
 require __DIR__ . '/includes/header.php';
 ?>
